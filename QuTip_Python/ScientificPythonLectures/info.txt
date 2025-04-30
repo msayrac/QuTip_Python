@@ -1,0 +1,10 @@
+
+25  Tuples kaldım
+
+
+
+
+
+github 
+https://github.com/jrjohansson/scientific-python-lectures
+
