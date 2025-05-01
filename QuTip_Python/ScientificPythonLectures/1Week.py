@@ -155,23 +155,31 @@ print(l)
 l.remove(0) # remove specific element
 print(l)
 
+#%% tuples are like lists, except that they cannot be modified once created. --> immutable
 
+point=(10,20)
+print(point,type(point))
 
+# We can unpack a tuple by assigning it to a comma-separated list of variables
 
+x,y =point
+print("x=",x)
+print("y=",y)
 
+# If we try to assign a new value to an element in a tuple we get an error immutable
 
+# point[0]=20
 
+#%% Dictionaries
+# Dictionaries are also like lists, except that each element is a key-value pair
 
+params ={"key1":1,"key2":3, 3:"Ali"}
+print(params["key1"])
+print(params[3])
 
+# add a new entry
+params[5]="New Parameters"
 
-
-
-
-
-
-
-
-
-
-
+print(params)
+print(params[5])
 
