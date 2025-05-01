@@ -1,6 +1,5 @@
 
-25  Tuples kaldım
-
+Control Flow
 
 
 
@@ -8,3 +7,9 @@
 github 
 https://github.com/jrjohansson/scientific-python-lectures
 
+qutip dokumanı bitir
+
+pytorch
+Udemy den kusrları al
+Django
+FastAPI
