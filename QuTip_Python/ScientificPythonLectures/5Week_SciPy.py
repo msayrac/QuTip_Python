@@ -2,7 +2,6 @@
 
 # The SciPy framework builds on top of the low-level NumPy framework for multidimensional arrays, and provides a large number of higher-level scientic algorithms.
 
-
 import matplotlib.pyplot as plt
 from IPython.display import Image
 
@@ -31,7 +30,7 @@ ax.legend()
 # quad, dblquad and tplquad for single, double and triple integrals
 
 from scipy.integrate import *
-
+from numpy import *
 # define a simple function for the integrand
 def f(x):
     return x
@@ -117,8 +116,19 @@ axes[1].set_ylim([-1,0])
 axes[1].set_xlim([-1,1])
 
 #%%
-from IPython.display import display, clear_output
+from IPython.display import display, clear_output,Image
 import time
+from numpy import *
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint,ode
+
+g=9.8
+L=0.5
+m=0.1
+#choose an initial state
+x0 = [pi/4,pi/2,0,0]
+#time to solve the ODE for from 0 to 10 seconds
+t = linspace(0,10,50)
 
 fig,ax = plt.subplots(figsize=(4,4))
 
@@ -139,3 +149,4 @@ ax.set_xlim([1,-1])
 clear_output()
 display(fig)
 time.sleep(0.1)
+

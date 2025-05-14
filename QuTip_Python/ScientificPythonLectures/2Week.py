@@ -88,25 +88,10 @@ print(myfunc(5, debug=True))
 
 print(myfunc(p=0, x=5, debug=True))
 
+# sometime we want to access to the indices of the values when iterating over a list.
 
+liste=range(-3,3)
+print(*liste)
+for idx, value in enumerate(liste):
+    print(idx,value)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
