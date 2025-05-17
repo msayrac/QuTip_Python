@@ -153,266 +153,133 @@ ax.set_ylabel(r"$y$")
 ax.set_title("title")
 
 # Setting colors, linewidths, linetypes
+# Control over axis appearance
+# ax.axis("tight")
+# ax.set_xlim([0,15])
+# ax.set_ylim([0,150])
 
-#%% Control over axis appearance
+# logarithmic scale
+ax.set_yscale("log")
+ax.grid(color="b",alpha = 1, linestyle="dashed",linewidth=1)
 
-99 kaldım sayfa
+ax.spines["bottom"].set_color("none")
+ax.spines["left"].set_color("yellow")
 
+ax2 =ax.twinx()
+ax2.plot(x,x**4,lw=2,color="red")
+ax2.set_ylabel(r"volume$(m^4)$",fontsize=18, color="red")
 
+#%% 2D plot 
 
+import matplotlib.pyplot as plt
+import numpy as np
 
+n = np.array([0,1,2,3,4,5])
+fig, axes = plt.subplots(1,4,figsize=(12,3))
 
+axes[0].scatter(n,n+0.25*np.random.rand(len(n)))
+axes[0].set_title("scatter")
 
+axes[1].step(n,n**2,lw=2)
+axes[0].set_title("step")
 
+axes[2].bar(n,n**2,align="center",width=0.5,alpha=0.5)
+axes[2].set_title("bar")
 
+axes[3].fill_between(n,n**2,n**3,color="green")
+axes[3].set_title("fill_between")
 
+#%% polar plot
 
+import matplotlib.pyplot as plt
+import numpy as np
 
+fig =plt.figure()
+ax =fig.add_axes([0,0,0.6,0.6],polar = True)
+t = np.linspace(0, 2*np.pi,100)
+ax.plot(t,t,color = "blue",lw=3)
 
+ax.text(-4*np.pi,np.pi/2,"test",fontsize=20,color="green")
 
+#%% subplots and insets
 
+import matplotlib.pyplot as plt
+import numpy as np
 
+fig, ax = plt.subplots(2,3)
+fig.tight_layout()
 
+# subplot2grid
 
+fig = plt.figure()
+ax1 = plt.subplot2grid((3,3),(0,0),colspan =3)
+ax2 = plt.subplot2grid((3,3),(1,0),colspan=2)
 
+ax3 = plt.subplot2grid((3,3),(1,2),rowspan = 2)
+ax4 = plt.subplot2grid((3,3),(2,0))
+ax5 = plt.subplot2grid((3,3),(2,1))
 
+fig.tight_layout()
 
+#%% add_axes
+import matplotlib.pyplot as plt
+import numpy as np
 
+x = np.array([0,1,2,3,4,5])
 
+fig, ax = plt.subplots()
 
+ax.plot(x,x**2,x,x**3)
+fig.tight_layout()
 
+# inset
 
+inset_ax =fig.add_axes([0.25,0.45,0.35,0.35]) # X, Y, width, height
 
+inset_ax.plot(x,x**2,x,x**3)
+inset_ax.set_title("zoom near origin")
 
+inset_ax.set_xlim([0.2,2])
+inset_ax.set_ylim([0.2,2])
 
+#%% Colormap and contour figures
 
+import matplotlib.pyplot as plt
+import numpy as np
 
+alpha = 0.7
+phi_ext = 2*np.pi*0.5
 
+def flux_qubit_potential(phi_m,phi_p):
+    return 2 + alpha -2*np.cos(phi_p)*np.cos(phi_m)-alpha*np.cos(phi_ext-2*phi_p)
 
+phi_m = np.linspace(0,2*np.pi,100)
+phi_p = np.linspace(0,2*np.pi,100)
 
+X, Y =np.meshgrid(phi_p,phi_m)
 
+Z =flux_qubit_potential(X,Y).T
 
+fig, ax = plt.subplots()
+p= ax.pcolor(X/(2*np.pi),Y/(2*np.pi),Z,cmap=plt.cm.RdBu,vmin=abs(Z).min(),vmax=abs(Z).max())
 
+cb = fig.colorbar(p,ax=ax)
 
+# imshow
 
+fig,ax = plt.subplots()
 
+im = ax.imshow(Z,cmap =plt.cm.RdBu,vmin=abs(Z).min(),vmax = abs(Z).max())
+im.set_interpolation("bilinear")
 
+cb = fig.colorbar(im,ax=ax)
 
+# contour
 
+fig, ax = plt.subplots()
+cnt = ax.contour(Z,cmap=plt.cm.RdBu,vmin=abs(Z).min(),vmax=abs(Z).max())
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#%% 3D figures
 
 
 
