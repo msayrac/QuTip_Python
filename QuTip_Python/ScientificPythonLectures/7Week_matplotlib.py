@@ -279,11 +279,6 @@ cb = fig.colorbar(im,ax=ax)
 fig, ax = plt.subplots()
 cnt = ax.contour(Z,cmap=plt.cm.RdBu,vmin=abs(Z).min(),vmax=abs(Z).max())
 
-#%% 3D figures
-
-
-
-
 
 
 

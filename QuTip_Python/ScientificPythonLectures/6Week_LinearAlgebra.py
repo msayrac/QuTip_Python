@@ -196,3 +196,58 @@ ax.plot(x,y_real, "k", label = "true funciton")
 ax.plot(x,y_interp1, "r", label = "lineer interp")
 ax.plot(x,y_interp2, "g", label = "cubic interp")
 ax.legend(loc=3)
+
+#%%  Statistics
+
+# from scipy import stats
+
+from scipy.stats import *
+from scipy import *
+from numpy import *
+import matplotlib.pyplot as plt
+from IPython.display import Image
+
+# create a discreet random variable with poissionian distribution
+
+X =stats.poisson(3.5) # photon distribution for a coherent state with n=3.5 photons
+
+n = arange(0,15)
+
+fig, axes = plt.subplots(3, 1, sharex = True) # sharex x axis ortak paylasır
+# plot the probability mass function (PMF)
+axes[0].step(n,X.pmf(n))
+
+# plot the commulative distribution function (CDF)
+axes[1].step(n,X.cdf(n))
+
+# plot histogram of 1000 random realizations of the stochastic variable X
+axes[2].hist(X.rvs(size=1000))
+
+
+# create a (continous) random variable with normal distribution
+Y = stats.norm()
+x=linspace(-5, 5,100)
+
+fig,axes = plt.subplots(3,1,sharex = True)
+# plot the probability distribution function (PDF)
+axes[0].plot(x,Y.pdf(x))
+
+# plot the commulative distributin function (CDF)
+axes[1].plot(x,Y.cdf(x))
+
+# plot histogram of 1000 random realizations of the stochastic variable Y
+axes[2].hist(Y.rvs(size=1000),bins=50)
+
+X.mean(), X.std(), X.var() # poission distribution
+
+Y.mean(), Y.std(), Y.var()
+
+# Statistical tests
+# Test if two sets of (independent) random data comes from the same distribution
+
+t_statistic, p_value =stats.ttest_ind(X.rvs(size=1000),X.rvs(size=1000))
+
+print(f"t-statistic =",t_statistic)
+print(f"p-value =",p_value)
+
+
